@@ -15,14 +15,16 @@ library
         default-language:       Haskell2010
         exposed-modules:        Quasidiffusion
         hs-source-dirs:         library
-        build-depends:          base
+        build-depends:          base, repa == 3.2.*, repa-io == 3.2.*
+        ghc-options:            -XTypeOperators
         ghc-prof-options:
                                 -auto-all
                                 -prof
 
 
 executable quasidiffusion
-        build-depends:          base, quasidiffusion
+        build-depends:          base, quasidiffusion, repa == 3.2.*, repa-io == 3.2.*
+        ghc-options:            -XTypeOperators
         default-language:       Haskell2010
         hs-source-dirs:         main
         main-is:                Main.hs
@@ -31,8 +33,8 @@ executable quasidiffusion
                                 -prof
 
 test-suite hspec
-        ghc-options:            -fhpc
-        build-depends:          base, quasidiffusion, hspec == 1.8.*
+        ghc-options:            -fhpc -XTypeOperators
+        build-depends:          base, quasidiffusion, hspec == 1.8.*, repa == 3.2.*, repa-io == 3.2.*
         default-language:       Haskell2010
         hs-source-dirs:         test-suite library
         main-is:                Spec.hs
@@ -48,17 +50,19 @@ benchmark criterion
 
 test-suite doctest
         build-depends:          base, doctest == 0.9.*, Glob == 0.7.*
+        ghc-options:            -XTypeOperators
         default-language:       Haskell2010
         hs-source-dirs:         test-suite
         main-is:                DocTest.hs
         type:                   exitcode-stdio-1.0
 
 test-suite haddock
-        build-depends:          base, process == 1.1.*, regex-compat == 0.95.*
+        build-depends:          base, process == 1.1.*, regex-compat == 0.95.*        
         default-language:       Haskell2010
         hs-source-dirs:         test-suite
         main-is:                Haddock.hs
         type:                   exitcode-stdio-1.0
+        ghc-options:            -XTypeOperators
 
 test-suite hpc
         build-depends:          base, process == 1.1.*, regex-compat == 0.95.*
